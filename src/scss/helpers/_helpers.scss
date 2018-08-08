@@ -1,0 +1,319 @@
+// ==========================================================================
+//		Helpers
+//		
+//		Created Date:		8-03-2018
+//		Author:				Pankaj Rana 
+//
+// ==========================================================================
+
+// *,
+// *:after,
+// *:before {
+//     @include box-sizing(border-box);
+// }
+
+@import './_variable';
+
+.svgContent {
+	width: 0;
+	height: 0;
+}
+
+
+body, a {
+    color: #0c1316;
+    text-decoration: none;
+}
+p, .text-normal {
+    font-family: $gillsans;
+    font-size:14px; 
+}
+
+.col-half {
+    display: inline-block;
+    width: 50%;
+    float: left;
+}
+
+.relative {
+    position: relative;
+}
+
+.pull-left {
+    float: left;
+}
+
+.pull-right {
+    float: right;
+}
+
+.show-inner {
+    overflow: visible;
+}
+
+.text{
+    &__head{
+        &--big {
+            font-size: 74px;
+        }
+        &--bigger {
+            font-size: 102px;
+        }
+        
+        &--small {
+            font-size: 34px;
+        }
+    }
+}
+
+.text-normal {
+    font-size:14px;
+}
+.text-medium {
+    font-size: 18px;
+    -webkit-margin-after: 0em;
+}
+.text {
+    &__heading{
+        &--h5 {
+            color:$gray-light;
+            -webkit-margin-before: 0em;
+            -webkit-margin-after: 0em;
+        }
+        &--h3 {
+            color:$gray-dark;
+            -webkit-margin-before: 0em;
+            -webkit-margin-after: 0em;
+            font-size: 19px;
+            margin-top: 10px;
+            letter-spacing: 0.5px;
+        }
+    }
+    &__info{
+        color:$gray;
+        font-size: 13px;
+        margin-top: 10px;
+        line-height: 1.4em;
+    }
+    &--white {
+        color: $white !important;
+    }
+}
+.text-heading {
+    font-size: 54px;
+    line-height: 45px;
+    -webkit-margin-after: 0em;
+    color:$gray-dark;
+}
+   
+.text-medium-x {
+    font-size: 20px;
+    -webkit-margin-after: 0em;
+}
+.text-bold{
+    font-weight: 600;
+}
+
+
+.text-block {
+    display: block;
+}
+.inline-block {
+    display: inline-block;
+}
+.clearfix{
+    clear:both;
+    &:before, &:after {
+        content:'';
+        display: table;
+    }
+}
+
+.no-wrap {
+    white-space: nowrap;
+}
+
+.text-subheading {
+    line-height: 25px;
+    margin-top: 30px;
+    padding-right:5vw;
+    padding-bottom: 37px; 
+}
+.text-smallheading{
+    font-size: 14px;
+    -webkit-margin-before: 0em;
+    -webkit-margin-after: 0em;
+}
+.text-center{
+    text-align: center;
+}
+.text-line-align {
+    margin-left:-38px;
+}
+.text-line-align-t1 {
+    margin-left:-34px;
+}
+.text-strike {
+    padding: 0 16px;
+    position: relative;
+    z-index: 2;
+    &:before {
+        content: '';
+        height: 7px;
+        display: inline-block;
+        position: absolute;
+        z-index: -1;
+        background-color: $white;
+        top: calc(50% - 2px);
+    }
+    &--left {
+        padding: 0 16px 0 0;
+        &:before{
+            left:-16px;
+            right:0px;
+        }
+    }
+    &--center{
+        padding: 0 16px;
+        &::before {
+            left: 0;
+            right: 0;
+        }
+    }
+    &--pink {
+        &:before{
+            background-color: $pink;
+        }
+    }
+}
+
+.btn {
+    display: inline-block;
+    padding:0 8px;
+    &--pink {
+        background: $pink;
+        line-height: 26px;
+        padding-top: 1px;
+        font-size: 15px;
+    }
+    &--regular {
+        font-size:12px;
+    }
+    &--pinkborder{
+        border:2px solid $pink;
+        padding:0 13px;
+        line-height: 22px; 
+    }
+    &--black {
+        background: $gray-dark;
+        line-height: 26px;
+        padding-top: 1px;
+        font-size: 13px;
+        color:$pink;
+        box-shadow: none;
+        border:none;
+        letter-spacing: 1px;
+        padding: 0 15px;
+        cursor:pointer;
+    }
+}
+
+.ico{
+    &__insta--pic {
+        width: 60px;
+        height: 60px;
+        position: absolute;
+        right: 0;
+        top: 0;
+        z-index: 2;
+        background:url('http://localhost:3000/images/assets/instagram-btn.png') no-repeat center center;
+    }
+}
+.down-arrow {
+    display: inline-block;
+    width: 0;
+    height: 0;
+    border-style: solid;
+    border-width: 5px 3px 0 3px;
+    border-color: $gray-dark transparent transparent transparent;
+    position: absolute;
+    bottom: 16px;
+    right: 3px;
+}
+.insta-overlay {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 100%;
+    width: 100%;
+    transiton:all 0.3s ease-in;
+    background-color: rgba(0,0,0,0.4);
+    opacity: 0;
+    z-index: 3;
+    cursor: pointer;
+    &:hover, &:hover ~ .insta-icon {
+        opacity: 1;
+    }
+}
+.insta-icon {
+    position: absolute;
+    width:120px;
+    left: calc(50% - 60px);
+    top: calc(50% - 15px);
+    .social-text {
+        color: white;
+        font-size: 18px;
+    }
+    .ico {
+        display: inline-block;
+        background-image: url(http://localhost:3000/images/instagram/sprite.png);
+        width: 21px;
+        height: 24px;
+        &--chat {
+            background-position: -401px -352px;
+        }
+        &--wish {
+            background-position: -423px -352px;
+        }
+    }
+}
+.bg-type-1{
+    &:before {
+        content: '';
+        background:url('http://localhost:3000/images/assets/detail03.png') no-repeat bottom center;
+        display: inline-block;
+        width: 122px;
+        height: 30px;
+        position: absolute;
+        z-index: -1;
+        left: calc(50% - 185px);
+        bottom: -6px;
+        background-size: 100%;
+    }
+}
+
+.bg-type-2{
+    &:before {
+        content: '';
+        background:url('http://localhost:3000/images/assets/bg-detail.png') no-repeat bottom center;
+        display: inline-block;
+        width: 120px;
+        height: 90px;
+        position: absolute;
+        z-index: -1;
+        left: calc(50% - 60px);
+        bottom:0px;
+    }
+    &:after {
+        content: '';
+        background:url('http://localhost:3000/images/assets/detail01.png') no-repeat bottom center;
+        display: inline-block;
+        width: 24px;
+        height: 73px;
+        position: absolute;
+        z-index: -1;
+        right: 6px;
+        bottom: 4px;
+    }
+
+}

@@ -1,0 +1,91 @@
+.pop-slider{
+    &__item {
+        display: inline-block;
+        position: relative;
+        padding: 54px 10px 10px;
+        &--user-name {
+            display: block;
+        }
+        & + & {
+         margin-left: 5px;
+        }
+        &--text {
+            padding: 15px 20px 20px;
+        }    
+        &--container {
+        background-color: #fff;
+        box-shadow: 0 2px 4px 0px rgba(175, 162, 162, 0.4);
+        transition: all 0.4s ease-in;
+        padding-bottom: 60px; 
+        img {
+            width: 100%;
+           }
+        }
+        &--picture{
+            position: relative;
+        }
+        &--user-name{
+            text-align: right;
+            font-size: 13px;
+            margin-top: 15px;
+        }
+        &.active {
+             .pop-slider__item--container {
+                width: 325px;
+            }
+        }
+    }
+    &__wrap {
+        padding-bottom: 60px;
+        .slide-next, .slide-prev {
+            top: 100% !important;
+            position: absolute;
+            cursor: pointer;
+        }
+        .slide-next {
+            right: 150px;
+            left:auto;
+        }
+        .slide-prev{
+            right: 208px;
+            left:auto;
+        }
+    }
+}
+
+.label-text{
+    &--box {
+        position: absolute;
+        width: 65px;
+        height: 65px;
+        color: #fff;
+        text-align: center;
+        background: rgba(0,0,0,0.3);
+        font-size: 15px;
+        .enum {
+            font-size: 30px;
+            text-align: center;
+            width: 100%;
+            padding-top: 8px;
+        }
+    }
+}
+
+
+
+.ico-leftarrow {
+    right: 0;
+    bottom: 4px;
+    width: 50px;
+    height: 50px;
+    background-image: url(http://localhost:3000/images/assets/go-btn.png);
+    background-position: 80%;
+    cursor: pointer;
+}
+
+
+.slick-active {
+    .pop-slider__item {
+        width: 325px;
+    }
+}

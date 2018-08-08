@@ -1,0 +1,89 @@
+// ==========================================================================
+//		Forms
+//		
+//		Created Date:		8-03-2018
+//		Author:				Pankaj Rana 
+//
+// ==========================================================================
+
+// *,
+// *:after,
+// *:before {
+//     @include box-sizing(border-box);
+// }
+
+@import './_variable';
+@import '../mixins/_placeholder';
+
+.form {
+    font-family: 
+    &--row {
+
+    }
+    label {
+        display: block;
+        width:100%;
+        font-size: 12px;
+    }
+   
+    .input {
+        width: 220px;
+        border-color:$border-input-color;
+        box-shadow: none;
+        height: 35px;
+        background-color: $pink;
+        outline: none;
+        font-family: $gillsans;
+        font-size: 13px;
+        @include input-placeholder {
+            color: $gray-light;
+            }
+            &__border{
+                &--t1 {
+                    border-width: 0 0 1px 0;
+
+                }
+                &--t2 {
+                    border-width: 0 0 2px 0;
+                }
+            }
+
+           &.inactive {
+                color:$gray-light;
+           }
+           .active{
+                color: $gray;
+           }     
+        }
+        div.input__border--t2 {
+            border-bottom: 2px solid $border-input-color;
+            line-height: 35px;
+        }
+
+    .select {
+        position: absolute;
+        height: 35px;
+        width: 100%;
+        font-family: $gillsans;
+        &__with {
+            &--opacity {
+                z-index: 1;
+                left: 0;
+                bottom: 0;
+                opacity: 0;
+            }
+        }
+    }
+    &--col {
+        & + & {
+            margin-left:20px; 
+        } 
+    }
+    &--row {
+        padding-top:15px;
+        position: relative;
+    }
+    &--btn{
+        padding-top:20px;
+    }
+}

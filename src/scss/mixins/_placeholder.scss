@@ -1,0 +1,41 @@
+// ==========================================================================
+// Placeholders
+// ==========================================================================
+
+@mixin input-placeholder {
+    &.placeholder { @content; }
+    &:-moz-placeholder { @content; }
+    &::-moz-placeholder { @content; }
+    &:-ms-input-placeholder { @content; }
+    &::-webkit-input-placeholder { @content; }
+}
+
+@mixin input-placeholder-focus {
+    &.placeholder:focus { @content; }
+    &:focus:-moz-placeholder { @content; }
+    &:focus::-moz-placeholder { @content; }
+    &:focus:-ms-input-placeholder { @content; }
+    &:focus::-webkit-input-placeholder { @content; }
+}
+
+// ==========================================================================
+// Usage
+// --------------------------------------------------------------------------
+//
+// input,  
+// textarea {  
+//     @include input-placeholder {
+//         color: $grey;
+//     }
+// }
+//
+// --------------------------------------------------------------------------
+//
+// input,  
+// textarea {  
+//     @include input-placeholder-focus {
+//         color: $grey;
+//     }
+// }
+//
+// ==========================================================================

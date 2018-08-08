@@ -1,0 +1,58 @@
+ .animate {
+    &__fadeUp {
+        position: relative;
+        &--type1 {
+            bottom: -100px;
+            position: relative;
+            opacity: 0;
+
+            &.fadeInUp {
+                bottom: 0px;
+                animation-name: fadeInUp-1;
+                animation-duration: 0.5s;
+                opacity: 1;
+            }  
+            
+        }
+        &--type2 {
+            top: 200px;
+            opacity: 0;
+             &.fadeInUp {
+                top: 0px;
+                animation-name: fadeInUp-2;
+                animation-duration: 1.2s;
+                opacity: 1;
+            }  
+        }
+    }
+} 
+
+@keyframes fadeInUp-1 {
+    from {
+      opacity: 0;
+      bottom:-100px;
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: none;
+      bottom: 0px;
+    }
+  }
+  
+  @keyframes fadeInUp-2 {
+    from {
+      opacity: 0;
+      top:200px;
+      transform: translate3d(0, 100%, 0);
+    }
+  
+    to {
+      opacity: 1;
+      transform: none;
+      top:0px;
+    }
+  }
+  
+  

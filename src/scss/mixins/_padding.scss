@@ -1,0 +1,91 @@
+// ==========================================================================
+// Padding
+// ==========================================================================
+
+// 
+// Padding Top
+// ==========================================================================
+
+@mixin top-paddings {
+    @for $pt from 0 to 101 {
+        @if ( $pt % 5 == 0 ) {
+            .pt-#{$pt} {
+                padding-top: $pt+px;
+            }
+        }
+    }
+}
+
+// 
+// Padding Bottom
+// ==========================================================================
+
+@mixin bottom-paddings {
+    @for $pb from 0 to 101 {
+        @if ( $pb % 5 == 0 ) {
+            .pb-#{$pb} {
+                padding-bottom: $pb+px;
+            }
+        }
+    }
+}
+
+
+// 
+// Padding Left
+// ==========================================================================
+
+@mixin left-paddings {
+    @for $pl from 0 to 31 {
+        @if ( $pl % 5 == 0 ) {
+            .pl-#{$pl} {
+                padding-left: $pl+px;
+            }
+        }
+    }
+}
+
+
+// 
+// Padding Right
+// ==========================================================================
+
+@mixin right-paddings {
+    @for $pr from 0 to 31 {
+        @if ( $pr % 5 == 0 ) {
+            .pr-#{$pr} {
+                padding-right: $pr+px;
+            }
+        }
+    }
+}
+
+// 
+// Padding Vertical
+// ==========================================================================
+
+@mixin vertical-paddings {
+    @for $py from 0 to 51 {
+        @if ( $py % 5 == 0 ) {
+            .py-#{$py} {
+                padding-top: $py+px;
+                padding-bottom: $py+px;
+            }
+        }
+    }
+}
+
+// 
+// Padding Horizontal
+// ==========================================================================
+
+@mixin horizontal-paddings {
+    @for $px from 0 to 31 {
+        @if ( $px % 5 == 0 ) {
+            .px-#{$px} {
+                padding-top: $px+px;
+                padding-bottom: $px+px;
+            }
+        }
+    }
+}

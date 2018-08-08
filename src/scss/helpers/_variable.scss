@@ -1,0 +1,89 @@
+// ==========================================================================
+//		Global Variables
+//		
+//		Created Date:		03-08-2018
+//		Author:				Pankaj Rana 
+//
+// ==========================================================================
+
+/*  */
+
+// ==========================================================================
+// Colors
+// ==========================================================================
+
+/*  */
+
+$white: #fff !default;
+$black: #000 !default;
+$red: #b71c1c !default;
+$orange: #F9BA58 !default;
+$yellow: #f4c505 !default;
+$cyan: #37C6F4 !default;
+$green: #2bb700 !default;
+$dark-green: #006e00 !default;
+$blue: #6b86cb !default;
+$teal: #388571 !default;
+$pink: #fbd6c3 !default;
+$purple: #535874 !default;
+$gold: #9a6a05 !default;
+
+/*  */
+
+//
+// Create grayscale
+//
+$gray-dark: #333333 !default;
+$gray: #666666 !default;
+$gray-light: #999999 !default;
+$gray-lighter: #e2e2e2 !default;
+$gray-lightest: #f8f8f8 !default;
+$gray-lightest-1: #fefefe !default;
+$gray-f4f4f4: #f4f4f4 !default;
+$gray-fafafa: #fafafa !default;
+
+$shadow-color: #f5f5f4 !default;
+$border-color: #d9d9d9 !default;
+$border-input-color: #4c4b46 !default;
+
+
+//
+// Fonts 
+//
+@font-face {
+    font-family: 'din_condensedbold';
+    src: url('/fonts/din_condensed_bold-webfont.woff2') format('woff2'),
+         url('/fonts/din_condensed_bold-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'gill_sans';
+    src: url('/fonts/GillSans.ttc') format('OpenType');
+    font-weight: normal;
+    font-style: normal;
+}
+
+
+
+$dincondensed : 'din_condensedbold', sans-serif;
+$gillsans : 'gill_sans', sans-serif;
+
+//
+// Fonts  sizes
+//
+$font-size-xxl:   24px !default;
+$font-size-xl:   18px !default;
+$font-size-lg:   16px !default;
+$font-size-md:   14px !default;
+$font-size-smb:   13px !default;
+$font-size-sm:   12px !default;
+$font-size-xs:   10px !default;
+
+$font-size-h1: 32px !default;
+$font-size-h2: 22px !default;
+$font-size-h3: 18px !default;
+$font-size-h4: 16px !default;
+$font-size-h5: 14px !default;
+$font-size-h6: 12px !default;
+
