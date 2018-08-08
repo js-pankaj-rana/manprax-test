@@ -34,6 +34,13 @@
                 width: 325px;
             }
         }
+        .chef-choice {
+            width: 100px;
+            position: absolute;
+            right: 17px;
+            top: -50px;
+            z-index: 10;
+        }
     }
     &__wrap {
         padding-bottom: 60px;

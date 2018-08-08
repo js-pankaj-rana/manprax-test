@@ -15,9 +15,9 @@ export default class PopRecipesComponent extends React.Component {
                 textinfo: 'Make a speedy version of romesco sauce with its famous almond and red pepper flavours. Serve on sourdough and add broccoli for a colourful, veget…',
                 username: 'USER FULL NAME',
                 sliderWidth: '325px',
-                chefchoice: false,
-                chefchoiceimage: '/images/assets/stamp.png'
-
+                sliderOffTop: '0px',
+                chefchoice: true,
+                chefchoiceimage: '/images/assets/chef-stamp.png'
             },
             {
                 labeltext: 'SERVINGS',
@@ -28,8 +28,9 @@ export default class PopRecipesComponent extends React.Component {
                 textinfo: 'The pineapple juice is the star of the dressing and what gives it such a refreshing and sweet taste. Pineapple juice is kno',
                 username: 'USER FULL NAME',
                 sliderWidth: '220px',
+                sliderOffTop: '0px',
                 chefchoice: false,
-                chefchoiceimage: '/images/assets/stamp.png'
+                chefchoiceimage: '/images/assets/chef-stamp.png'
 
             },
             {
@@ -41,8 +42,9 @@ export default class PopRecipesComponent extends React.Component {
                 textinfo: 'Make a speedy version of romesco sauce with its famous almond and red pepper flavours. Serve on sourdough and add broccoli for a colourful, veget…',
                 username: 'USER FULL NAME',
                 sliderWidth: '220px',
-                chefchoice: false,
-                chefchoiceimage: '/images/assets/stamp.png'
+                sliderOffTop: '100px',
+                chefchoice: true,
+                chefchoiceimage: '/images/assets/chef-stamp.png'
 
             },
             {
@@ -54,8 +56,9 @@ export default class PopRecipesComponent extends React.Component {
                 textinfo: 'Make a speedy version of romesco sauce with its famous almond and red pepper flavours. Serve on sourdough and add broccoli for a colourful, veget…',
                 username: 'USER FULL NAME',
                 sliderWidth: '220px',
+                sliderOffTop: '0px',
                 chefchoice: false,
-                chefchoiceimage: '/images/assets/stamp.png'
+                chefchoiceimage: '/images/assets/chef-stamp.png'
 
             },
             {
@@ -67,8 +70,9 @@ export default class PopRecipesComponent extends React.Component {
                 textinfo: 'Make a speedy version of romesco sauce with its famous almond and red pepper flavours. Serve on sourdough and add broccoli for a colourful, veget…',
                 username: 'USER FULL NAME',
                 sliderWidth: '325px',
+                sliderOffTop: '0px',
                 chefchoice: false,
-                chefchoiceimage: '/images/assets/stamp.png'
+                chefchoiceimage: '/images/assets/chef-stamp.png'
 
             },
             {
@@ -80,8 +84,9 @@ export default class PopRecipesComponent extends React.Component {
                 textinfo: 'Make a speedy version of romesco sauce with its famous almond and red pepper flavours. Serve on sourdough and add broccoli for a colourful, veget…',
                 username: 'USER FULL NAME',
                 sliderWidth: '220px',
+                sliderOffTop: '100px',
                 chefchoice: false,
-                chefchoiceimage: '/images/assets/stamp.png'
+                chefchoiceimage: '/images/assets/chef-stamp.png'
 
             }
         ];
@@ -96,7 +101,7 @@ export default class PopRecipesComponent extends React.Component {
             centerMode: true,
             swipe: false,
             infinite: false,
-            slidesToShow: 4,
+            slidesToShow: 1,
             slidesToScroll: 2,
             variableWidth: true,
             nextArrow: <SampleNextArrow />,
@@ -122,7 +127,7 @@ export default class PopRecipesComponent extends React.Component {
                         <div className="pop-slider__wrap ">
                         <Slider {...settings}>
                             {this.state.sliders.map( (opt, ind) => {
-                                return ( <SliderItem chefchoice={opt.chefchoice} chefchoiceimage={opt.chefchoiceimage} sliderWidth={opt.sliderWidth} key={'ind'+ind} username={opt.username} textinfo={opt.textinfo} headingH3={opt.headingH3} headingH5={opt.headingH5} imagepath={opt.imagepath} enum={opt.enum} labeltext={opt.labeltext}  /> )
+                                return ( <SliderItem chefchoice={opt.chefchoice} chefchoiceimage={opt.chefchoiceimage} sliderWidth={opt.sliderWidth} sliderOffTop={opt.sliderOffTop} key={'ind'+ind} username={opt.username} textinfo={opt.textinfo} headingH3={opt.headingH3} headingH5={opt.headingH5} imagepath={opt.imagepath} enum={opt.enum} labeltext={opt.labeltext}  /> )
                             }) }
                          </Slider>   
                         </div>
@@ -136,9 +141,9 @@ export default class PopRecipesComponent extends React.Component {
 
 
 const SliderItem = (props) => {
-    let width = props.sliderWidth;
+    let width = props.sliderWidth, offtop = props.sliderOffTop;
     return (
-        <div className="pop-slider__item" style={{width: width}}>
+        <div className="pop-slider__item" style={{width: width, marginTop: offtop}}>
             <div className="pop-slider__item--container"> 
                 <div className="pop-slider__item--picture">
                     {props.chefchoice && (<div className="chef-choice"><img src={props.chefchoiceimage} alt='images'/></div>)} 
