@@ -1,27 +1,6 @@
+import {FooterComponentJson} from '../module/FooterComponentJson';
 const FooterComponent = () => {
-    const footer = {
-        items: [{
-                    heading: 'Section 1',
-                    item: ['Subsection', 'Subsection', 'Subsection', 'Subsection']
-                },
-                {
-                    heading: 'Section 2',
-                    item: ['Subsection', 'Subsection', 'Subsection', 'Subsection']
-                },
-                {
-                    heading: 'Section 3',
-                    item: ['Subsection', 'Subsection', 'Subsection', 'Subsection']
-                },
-                {
-                    heading: 'Section 4',
-                    item: ['Subsection', 'Subsection', 'Subsection', 'Subsection']
-                },
-                {
-                    heading: 'Section 5',
-                    item: ['Subsection', 'Subsection', 'Subsection', 'Subsection']
-                }],
-        copyright: '2017. Company. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor .',     
-            };
+    const footer = FooterComponentJson;
     return (
         <footer className="footer">
             <div className="container">
@@ -78,9 +57,6 @@ const FooterComponent = () => {
                         </div>
                     </div>
                 </div>
-                
-                
-
             </div>
         </footer>
     )

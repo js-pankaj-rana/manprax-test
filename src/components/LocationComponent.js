@@ -7,7 +7,7 @@ export default class LocationComponent extends React.Component {
     }
     init(){
         // var iconBase = 'https://maps.google.com/mapfiles/kml/shapes/';
-        var iconBase = 'http://localhost:3000/images/assets/location-icon.png';
+        var iconBase = '/images/assets/location-icon.png';
         
         const mapOptions = {
             zoom: 11,

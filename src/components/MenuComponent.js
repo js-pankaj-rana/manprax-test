@@ -1,85 +1,23 @@
-import React from 'react';
+import {menuComponentJson} from '../module/menuComponentJson';
+
+import {scrollingAspectRatioModule, getElementOuterHeight, $elAll, getElementOffsetTop} from '../module/commonModule';
+
+
+console.log(scrollingAspectRatioModule(20,2225,4500));
+
 export default class MenuComponent extends React.Component {
 
     constructor(props){
         super(props);
-        const menudata = [
-            {
-                heading: 'STARTERS',
-                articles: [
-                    {
-                        heading: 'QUINOA CROQUETTAS',
-                        para: 'Quinoa and cheddar croquettas with aji rocotto &amp; pineapple salsa (v)',
-                        cta: '£4.95' 
-                    },
-                    {
-                        heading: 'CHIFA CHICHARRONES',
-                        para: 'Slow cooked, crispy pork belly with sweet soy sauce',
-                        cta: '£6.95' 
-                    },
-                    {
-                        heading: 'CALAMARES',
-                        para: 'Crispy baby squid with pickled jalapeño miso salsa',
-                        cta: '£6.95' 
-                    }
-                ]
-            },{
-                heading: 'MAIN COURSES',
-                articles: [
-                    {
-                        heading: 'EL CLASICO',
-                        para: 'Sea bass ceviche with aji limo tiger’s milk, sweet potato purée, choclo corn, red onion, coriander & plantain (gf)',
-                        cta: '£8.95' 
-                    },
-                    {
-                        heading: 'TIRADITO CALLAO',
-                        para: 'Cobia tiradito with coriander tiger’s milk, black tobika, crème fraiche & sweet potato crunchies',
-                        cta: '£8.95' 
-                    },
-                ]
-            },{
-                heading: 'SIDES',
-                articles: [
-                    {
-                        heading: 'SUPER POLLO',
-                        para: 'Marinated corn fed chicken pieces with rocotto salsa',
-                        cta: '£4.95' 
-                    },
-                    {
-                        heading: 'PATATAS FRITAS',
-                        para: 'Sweet potato fries with aji rocotto mayonnaise (v)',
-                        cta: '£3.95' 
-                    }
-                ]
-            },{
-                heading: 'DESSERTS',
-                articles: [
-                    {
-                        heading: 'ICECREAM',
-                        para: 'Lorem ipsum dolor sit amet salerma petrum sea',
-                        cta: '£3.95' 
-                    },
-                    {
-                        heading: 'TIRAMISU',
-                        para: 'Lorem ipsum dolor sit amet salerma petrum sea',
-                        cta: '£3.95' 
-                    },
-                    {
-                        heading: 'CHOCOLATE BROWNIE',
-                        para: 'Lorem ipsum dolor sit amet salerma petrum sea',
-                        cta: '£3.95' 
-                    }
-                ]
-            }
-        ];
+        const menudata = menuComponentJson;
         this.componentDidMount = this.componentDidMount.bind(this);
         this.scrollFunction = this.scrollFunction.bind(this);
         this.scrollingFunction = this.scrollingFunction.bind(this);
         this.state = {
             parentelmentH: 0,
             menudata,
-            bindHieght: undefined,
-            bindHalfHeight: [0,0,0,0],
+            bindHieght: 0,
+            bindHalfHeight: 0,
             offsetelement: 0,
             activenumspos: this.parentelmentH
         }
@@ -87,14 +25,14 @@ export default class MenuComponent extends React.Component {
     componentDidMount() {
         this.scrollFunction();
 
-        const allsections = Array.from(document.querySelectorAll('.js-parallex')),
+        const allsections = Array.from($elAll('.js-parallex')),
             bindHieght = [], bindHalfHeight = [];
             const self = this;
             let parentElH = undefined, offsetelement = 0;
             
             setTimeout(()=> {
-                parentElH  = (document.querySelector('.js-scale-sticky.ourmenu').clientHeight);
-                offsetelement = (document.querySelector('.js-scale-sticky.ourmenu').offsetTop);
+                parentElH  = getElementOuterHeight('.js-scale-sticky.ourmenu');
+                offsetelement = getElementOffsetTop('.js-scale-sticky.ourmenu');
                 // alert(offsetelement)
                  allsections.map( (element, ind) => {
                     bindHieght.push(element.clientHeight);
@@ -104,7 +42,8 @@ export default class MenuComponent extends React.Component {
                         return {
                             bindHieght,
                             bindHalfHeight,
-                            parentelmentH : parentElH,
+                            //parentelmentH : parentElH,
+                            activenumspos : parentElH,
                             offsetelement : offsetelement,
                         }
                     });
@@ -114,11 +53,14 @@ export default class MenuComponent extends React.Component {
         }
        
        scrollFunction(){
-            
-            window.addEventListener('scroll', this.scrollingFunction, false)
+            window.addEventListener('scroll', this.scrollingFunction, false);
         }
+
         scrollingFunction(){
-            let cpos = window.scrollY, winH = winH || window.screenX, offsetelement  = (document.querySelector('.js-scale-sticky.ourmenu').offsetTop), parentelmentH = (document.querySelector('.js-scale-sticky.ourmenu').clientHeight), crntPos, offestwithHeight = (offsetelement+parentelmentH+winH), scrollTo = offsetelement - parentelmentH;
+            let cpos = window.scrollY, winH = winH || window.screenY,
+                offsetelement  = getElementOffsetTop('.js-scale-sticky.ourmenu'),
+                parentelmentH = getElementOuterHeight('.js-scale-sticky.ourmenu'),
+                scrollTo = offsetelement - parentelmentH;
                 if( cpos >= scrollTo){
                  let cPosH = cpos,
                     actEleH = parentelmentH,
@@ -160,15 +102,14 @@ export default class MenuComponent extends React.Component {
                                 }
                             }
 
-                        if(ind > 0 && ind < x){
-                            nameclass = 'text-heading text-line-align text-line-align-t1'
+                        if(ind > 0 && ind < (x-1) ){
+                            nameclass = 'text-heading text-line-align text-line-align-t2'
                         }
                         else if(ind === (x-1) ){
-                            nameclass = 'text-heading text-line-align text-line-align-t2'
+                            nameclass = 'text-heading text-line-align text-line-align-t1'
                         }
                         
                         return (
-
                                  <MenuItems 
                                     key={'ind1'+ind} 
                                     styleheighthalf={ style } 
@@ -176,8 +117,8 @@ export default class MenuComponent extends React.Component {
                                     articles={opt.articles} 
                                     nameclass={ nameclass } 
                                     evenodd={evenOdd} />
-                            )
-                    } )}
+                                )
+                         } )}
                 </div>
             </div>
         </section>

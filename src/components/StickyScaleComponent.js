@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {scrollingAspectRatioModule} from'../module/commonModule'; 
+
 export class StickyScaleComponent extends React.Component {
     constructor(props){
         super(props);
@@ -7,9 +9,9 @@ export class StickyScaleComponent extends React.Component {
         this.animateOnScr = this.animateOnScr.bind(this);
         this.state = {
             currentPosition: 0,
-            allparents: undefined,
-            offsetall: undefined,
-            activestate:undefined,
+            allSectionsElements: undefined,
+            allOffsetSectionElements: undefined,
+            allPaginationState:undefined,
             activebool: undefined,
             bindAllSectionH: undefined,
             allSectionH: 0,  
@@ -22,7 +24,7 @@ export class StickyScaleComponent extends React.Component {
     componentDidMount(){
         this.scrollFunction();
         const allsections = Array.from(document.querySelectorAll('.js-scale-sticky'));
-        this.setState( (prevState) => (prevState.allparents = allsections) );
+        this.setState( (prevState) => (prevState.allSectionsElements = allsections) );
         let bindOffset = [], bindActive = [], bindActiveBool = [], bindAllSectionH = [], allSectionH = 0;
         let self = this;
         setTimeout(()=> {
@@ -44,8 +46,8 @@ export class StickyScaleComponent extends React.Component {
 
             self.setState( () =>{ 
                 return {
-                    offsetall : bindOffset,
-                    activestate : bindActive,
+                    allOffsetSectionElements : bindOffset,
+                    allPaginationState : bindActive,
                     activebool : bindActiveBool,
                     bindAllSectionH,
                     allPaginationH,
@@ -64,16 +66,11 @@ export class StickyScaleComponent extends React.Component {
     }
     animateOnScr(){
             const that = this;  
-            let bindAllSectionH, cpos = window.scrollY, actPos = that.state.offsetall, count, crntPos, allPaginationH = document.querySelector('.sticky__scale').clientHeight, allPaginationHPos = 0, allSectionH = this.state.allSectionH;
+            let bindAllSectionH, cpos = window.scrollY, actPos = that.state.allOffsetSectionElements, count, crntPos, allPaginationH = document.querySelector('.sticky__scale').clientHeight, allPaginationHPos = 0, allSectionH = this.state.allSectionH;
 
-            // console.log("allPaginationH=>>>"+allPaginationH)
             if(actPos){
                 bindAllSectionH = this.state.bindAllSectionH;
                 allPaginationHPos = this.state.allSectionH;
-
-                this.setState(()=> (allPaginationHPos));
-                // console.log(allPaginationHPos)
-
                 crntPos =  actPos.filter( (position) => position > cpos )
                 count = actPos.length - crntPos.length;
                 
@@ -81,7 +78,7 @@ export class StickyScaleComponent extends React.Component {
                     let nwcount = (count - 1);
                     let nwactive = [];
                     let nwactivebool = [];
-                    that.state.activestate.forEach( (ele, ind)=> {
+                    that.state.allPaginationState.forEach( (ele, ind)=> {
                             if(ind === nwcount){
                                   // counter+=count;
                                  nwactive.push('active');
@@ -95,7 +92,8 @@ export class StickyScaleComponent extends React.Component {
                     
                     that.setState( (prevState) => {
                         return {
-                            activestate : nwactive,
+                            allPaginationHPos,
+                            allPaginationState : nwactive,
                             activebool : nwactivebool,
                             allPaginationH: allPaginationH,
                             counter: count 
@@ -104,24 +102,33 @@ export class StickyScaleComponent extends React.Component {
 
 
                     let cPosH = cpos,  allSectionH = this.state.allSectionH,
+                        
                         scrElemH =  (actPos[count] - actPos[nwcount]),
+                        
                         singlePercent = (scrElemH/100),
+                        
+                        
                         singleSecPercent = (allSectionH/100),
-                        scrDiff = scrElemH - (actPos[nwcount] - cPosH),
+
                         scrSecDiff = (allSectionH - cPosH),
+
                         scrDiffPercent =  allPaginationHPos /singlePercent,
+                        
                         scrSecDiffPercent = scrSecDiff /singleSecPercent,
+                        
                         posTop = (15 * (scrDiffPercent / 100)) - 9,
-                        allPaginationHPos = (allPaginationH * (scrSecDiffPercent / 100) );
+                        allPaginationHPos = (allPaginationH * (scrSecDiffPercent / 100));
+
+
+
+
+
                         if(allPaginationHPos < 0 ){
                             allPaginationHPos = 0;
                         }
                         if( allPaginationHPos > (allPaginationH - 15) ){
                              allPaginationHPos = (allPaginationH - 15);
                         }
-
-                        console.log('allPaginationHPos==> '+allPaginationHPos )
-                        console.log('allPaginationH==> '+allPaginationH )
                         that.setState( () => {
                             return {
                                 activenumspos : posTop,
@@ -142,14 +149,14 @@ export class StickyScaleComponent extends React.Component {
             }
             return (
                 <div className="sticky__scale">
-                    <div class="enum-pos" style={style}><span class="enum-data" >{this.state.counter < 10 ? '0'+this.state.counter : this.state.counter }</span></div>
+                    <div className="enum-pos" style={style}><span className="enum-data" >{this.state.counter < 10 ? '0'+this.state.counter : this.state.counter }</span></div>
                     <ul className="list-unstyle">
                         {
-                            this.state.offsetall ? (
-                                this.state.offsetall.map( (opt, ind) => {
+                            this.state.allOffsetSectionElements ? (
+                                this.state.allOffsetSectionElements.map( (opt, ind) => {
                                     return (
-                                          <li className={'sticky__scale--item ' + this.state.activestate[ind]}  key={'opt'+(ind+1)} id={'id'+ind} data-offset={opt}>
-                                                <NumberComponent key={ind} numClass={this.state.activestate[ind]} relPos={this.state.activenumspos} ind={ind} boolData={this.state.activebool[ind]}/>
+                                          <li className={'sticky__scale--item ' + this.state.allPaginationState[ind]}  key={'opt'+(ind+1)} id={'id'+ind} data-offset={opt}>
+                                                <NumberComponent key={ind} numClass={this.state.allPaginationState[ind]} relPos={this.state.activenumspos} ind={ind} boolData={this.state.activebool[ind]}/>
                                             </li>
                                         )
                                 })

@@ -1,4 +1,8 @@
 const path = require('path');
+import {communityComponentJson} from'../module/communityComponentJson'; 
+ 
+
+import {getElementOffsetTop} from'../module/commonModule'; 
 
 
 export default class CommunityComponent extends React.Component {
@@ -6,51 +10,7 @@ export default class CommunityComponent extends React.Component {
         super(props);
         this.scrollFunction = this.scrollFunction.bind(this);
         this.componentDidMount = this.componentDidMount.bind(this);
-        const communitytext = [
-            {
-                messageBody: null,
-                imagebox: {
-                    image: './images/instagram/plate-image-1.jpg',
-                    wish: '14.7k',
-                    chat: 60
-                },
-                textbox: {
-                    heading: '@buzzfeedfood',
-                    para: 'It’s taco Tuesday! These tacos from @jesseszewczyk have no added sugars and are SO good · ·. Find the recipe from the link in our bio!  · ·: @taylormillerphoto',
-                    social: {wish: '60', chat: '14.7k'}
-                }
-
-            },
-
-            {
-                messageBody: 'Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore',
-                imagebox: {
-                    image: './images/instagram/plate-image-2.jpg',
-                    wish: '14.7k',
-                    chat: 60
-                },
-                textbox: {
-                    heading: '@love_food',
-                    para: 'Waffle sticks in Copenhagen! · · · · Milk chocolate with sprinkles, dark chocolate with coconut and milk chocolate with peanuts![· ·: @foodwithmichel] #lovefood',
-                    social: {wish: '789', chat: '99,7K'}
-                }
-
-            },
-            {
-                messageBody: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Duis aute irure.',
-                imagebox: {
-                    image: './images/instagram/plate-image-3.jpg',
-                    wish: '14.7k',
-                    chat: 60
-                },
-                textbox: {
-                    heading: '@buzzfeedfood',
-                    para: 'Getting into long weekend mode like ·  · #pancitpalabok (· · @jeepneynyc)',
-                    social: {wish: '18.2',  chat: '152'}
-                }
-
-            }
-        ];
+         const communitytext= communityComponentJson;        
         this.state = {
             product: communitytext,
             animatestate: false,
@@ -59,15 +19,15 @@ export default class CommunityComponent extends React.Component {
         }
     }
     componentDidMount(){
-        this.scrollFunction();
+        window.addEventListener('scroll', this.scrollFunction, false);
     }
     scrollFunction(){
-        const that = this;
-        window.addEventListener('scroll', function(){
-            let cpos = window.scrollY, winH = winH || window.screenX, offsetelement  = (document.querySelector('.js-scale-sticky.community').offsetTop), offestwithHeight = (offsetelement+ (winH*2/3) );
+         let cpos = window.scrollY, winH = winH || window.screenX, 
+            offsetelement  = getElementOffsetTop('.js-scale-sticky.community'),
+            offestwithHeight = (offsetelement+ (winH*2/3) );
                 
                 if( cpos >= offestwithHeight ){
-                    that.setState( () => {
+                    this.setState( () => {
                         return {
                             animatestate : true,
                             animateclass: 'fadeInUp'
@@ -75,7 +35,6 @@ export default class CommunityComponent extends React.Component {
                     })
                     
                 }
-                })
             }
 
     render(){
@@ -85,9 +44,9 @@ export default class CommunityComponent extends React.Component {
                         { this.state.product.map( (opt, ind) => {
                                  return (
                                         
-                                            <InstaText key={'ind_'+ind} msgbody= {this.state.product[ind].messageBody}
-                                                    imagebox={this.state.product[ind].imagebox}
-                                                    textbox={this.state.product[ind].textbox} indPos={ind} animateclass={this.state.animateclass} animatestate={this.state.animatestate}/>
+                                        <InstaText key={'ind_'+ind} msgbody= {this.state.product[ind].messageBody}
+                                            imagebox={this.state.product[ind].imagebox}
+                                            textbox={this.state.product[ind].textbox} indPos={ind} animateclass={this.state.animateclass} animatestate={this.state.animatestate}/>
                                  )                                     
                                 }
                                 )
@@ -158,9 +117,7 @@ export default class CommunityComponent extends React.Component {
         )
     }
 
-    
-
-     const InstaImge = (props) => {
+    const InstaImge = (props) => {
         return (
             <div className="community__gallary--box community__gallary--imgbox">
                 <div className="ico ico__insta--pic"></div>
@@ -171,7 +128,6 @@ export default class CommunityComponent extends React.Component {
                     </div>
                 </div>
                 <picture>  
-                    {console.log (props.imgbox.image)}
                     <img src={props.imgbox.image} alt="gallary image" />
                 </picture>
             </div>
