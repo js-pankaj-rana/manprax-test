@@ -140,7 +140,7 @@ export default class MenuComponent extends React.Component {
             <section className="js-scale-sticky ourmenu" >
             <div className="container">
                 <div className="ourmenu--heading text-center">
-                    <h2 className="text-strike text-strike--center text-heading inline-block">OUR MENU</h2>
+                    <h2 className="text-strike text-strike--pink text-strike--center text-heading inline-block">OUR MENU</h2>
                     <div className="text-center">
                         <a className="btn btn--pink" href="/">KNOW MORE</a>
                     </div>

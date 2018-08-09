@@ -141,13 +141,16 @@ export default class PopRecipesComponent extends React.Component {
 
 
 const SliderItem = (props) => {
-    let width = props.sliderWidth, offtop = props.sliderOffTop;
+    let width = props.sliderWidth,
+        offtop = props.sliderOffTop,
+        className = ( 325 === parseInt(width) ? 'pop-slider__item active' : 'pop-slider__item');
+
     return (
-        <div className="pop-slider__item" style={{width: width, marginTop: offtop}}>
+        <div className={className} style={{width: width, marginTop: offtop}}>
             <div className="pop-slider__item--container"> 
                 <div className="pop-slider__item--picture">
                     {props.chefchoice && (<div className="chef-choice"><img src={props.chefchoiceimage} alt='images'/></div>)} 
-                    <div className="label-text--box">
+                    <div className="label-text--box label-text--left">
                         <span className="inline-block enum">{props.enum}</span> {props.labeltext}
                     </div>
                     <picture>

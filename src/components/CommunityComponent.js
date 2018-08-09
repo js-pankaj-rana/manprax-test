@@ -116,10 +116,10 @@ export default class CommunityComponent extends React.Component {
                 bgClasstype= 'community__gallary bg-type-2 flex animate__fadeUp animate__fadeUp--type1 '  + (props.animatestate && props.animateclass);
             }
             if(ind == 1){
-                bgClasstype= 'community__gallary bg-type-1 flex';
+                bgClasstype= 'community__gallary bg-type-1 flex flex__dir--row-reverse';
             }
             if(ind == 2){
-                bgClasstype= 'community__gallary flex';
+                bgClasstype= 'community__gallary flex flex__dir--row-reverse';
             }
             if(ind==0){
                 boodata = true;

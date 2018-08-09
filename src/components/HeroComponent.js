@@ -12,7 +12,7 @@ const HeroComponent = () => {
                     <span className="inline-block text__head--bigger">
                         EXPERIENCE
                     </span>
-                    <span className="inline-block text-small">
+                    <span className="inline-block text__head--small">
                         NOW IN LONDON
                     </span>    
                 </h1>

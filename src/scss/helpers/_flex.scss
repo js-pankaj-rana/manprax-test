@@ -19,8 +19,17 @@
             &--column {
                 flex-direction: column;
             }
-            &--row-reverse{
+            &--row-reverse {
                 flex-direction: row-reverse;
+                &.community__gallary{
+                    padding:0 0px 25px 25px;
+                }
+                .community__gallary--box {
+                    margin-right:25px;
+                    & + & {
+                        margin-left:0px;
+                    }
+                }
             }
         }
     }

@@ -55,9 +55,11 @@ p, .text-normal {
     &__head{
         &--big {
             font-size: 74px;
+            line-height:0.8em;
         }
         &--bigger {
             font-size: 102px;
+            line-height:0.8em;
         }
         
         &--small {
@@ -71,6 +73,7 @@ p, .text-normal {
 }
 .text-medium {
     font-size: 18px;
+    letter-spacing:0.6px;
     -webkit-margin-after: 0em;
 }
 .text {
@@ -134,13 +137,14 @@ p, .text-normal {
 }
 
 .text-subheading {
-    line-height: 25px;
+    line-height: 22px;
     margin-top: 30px;
-    padding-right:5vw;
+    padding-right:4vw;
     padding-bottom: 37px; 
 }
 .text-smallheading{
-    font-size: 14px;
+    font-size: 12px;
+    padding-bottom:7px;  
     -webkit-margin-before: 0em;
     -webkit-margin-after: 0em;
 }
@@ -164,7 +168,7 @@ p, .text-normal {
         position: absolute;
         z-index: -1;
         background-color: $white;
-        top: calc(50% - 2px);
+        top: calc(50% - 4px);
     }
     &--left {
         padding: 0 16px 0 0;
@@ -195,6 +199,7 @@ p, .text-normal {
         line-height: 26px;
         padding-top: 1px;
         font-size: 15px;
+        letter-spacing:0.5px;
     }
     &--regular {
         font-size:12px;
@@ -266,7 +271,7 @@ p, .text-normal {
     }
     .ico {
         display: inline-block;
-        background-image: url(http://localhost:3000/images/instagram/sprite.png);
+        background-image: url('/images/instagram/sprite.png');
         width: 21px;
         height: 24px;
         &--chat {
@@ -280,7 +285,7 @@ p, .text-normal {
 .bg-type-1{
     &:before {
         content: '';
-        background:url('http://localhost:3000/images/assets/detail03.png') no-repeat bottom center;
+        background:url('/images/assets/detail03.png') no-repeat bottom center;
         display: inline-block;
         width: 122px;
         height: 30px;
@@ -295,18 +300,18 @@ p, .text-normal {
 .bg-type-2{
     &:before {
         content: '';
-        background:url('http://localhost:3000/images/assets/bg-detail.png') no-repeat bottom center;
+        background:url('/images/assets/detail02.png') no-repeat bottom center;
         display: inline-block;
-        width: 120px;
+        width: 134px;
         height: 90px;
         position: absolute;
         z-index: -1;
-        left: calc(50% - 60px);
-        bottom:0px;
+        left: calc(50% - 83px);
+        bottom: -5px;
     }
     &:after {
         content: '';
-        background:url('http://localhost:3000/images/assets/detail01.png') no-repeat bottom center;
+        background:url('/images/assets/detail01.png') no-repeat bottom center;
         display: inline-block;
         width: 24px;
         height: 73px;

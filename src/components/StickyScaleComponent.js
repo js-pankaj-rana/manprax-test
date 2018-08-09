@@ -6,7 +6,7 @@ export class StickyScaleComponent extends React.Component {
         this.scrollFunction = this.scrollFunction.bind(this);
         this.animateOnScr = this.animateOnScr.bind(this);
         this.state = {
-            currentposition: 0,
+            currentPosition: 0,
             allparents: undefined,
             offsetall: undefined,
             activestate:undefined,
@@ -116,8 +116,8 @@ export class StickyScaleComponent extends React.Component {
                         if(allPaginationHPos < 0 ){
                             allPaginationHPos = 0;
                         }
-                        if( allPaginationHPos > (allPaginationH - 10) ){
-                             allPaginationHPos = (allPaginationH - 10);
+                        if( allPaginationHPos > (allPaginationH - 15) ){
+                             allPaginationHPos = (allPaginationH - 15);
                         }
 
                         console.log('allPaginationHPos==> '+allPaginationHPos )
@@ -132,7 +132,7 @@ export class StickyScaleComponent extends React.Component {
 
                 }
             }
-            that.setState((prevState) => (prevState.currentposition = cpos));
+            that.setState((prevState) => (prevState.currentPosition = cpos));
         } 
     
        

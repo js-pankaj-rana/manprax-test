@@ -16,21 +16,22 @@
 @import '../mixins/_placeholder';
 
 .form {
-    font-family: 
+        margin-top: -19px;
     &--row {
+        label {
+            display: block;
+            width:100%;
+            font-size: 12px;
+            padding-bottom:5px;
+        }
 
-    }
-    label {
-        display: block;
-        width:100%;
-        font-size: 12px;
     }
    
     .input {
         width: 220px;
         border-color:$border-input-color;
         box-shadow: none;
-        height: 35px;
+        height: 32px;
         background-color: $pink;
         outline: none;
         font-family: $gillsans;

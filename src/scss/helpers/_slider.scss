@@ -3,6 +3,7 @@
         display: inline-block;
         position: relative;
         padding: 54px 10px 10px;
+        width:220px;
         &--user-name {
             display: block;
         }
@@ -16,7 +17,7 @@
         background-color: #fff;
         box-shadow: 0 2px 4px 0px rgba(175, 162, 162, 0.4);
         transition: all 0.4s ease-in;
-        padding-bottom: 60px; 
+        padding-bottom: 0px; 
         img {
             width: 100%;
            }
@@ -33,6 +34,14 @@
              .pop-slider__item--container {
                 width: 325px;
             }
+
+            .label-text {
+                &--left{
+                    transform: scale(1.5);
+                    left:16px;
+                    top:16px;
+                }
+                }
         }
         .chef-choice {
             width: 100px;
@@ -60,6 +69,7 @@
     }
 }
 
+
 .label-text{
     &--box {
         position: absolute;
@@ -80,6 +90,8 @@
 
 
 
+
+
 .ico-leftarrow {
     right: 0;
     bottom: 4px;
@@ -90,9 +102,3 @@
     cursor: pointer;
 }
 
-
-.slick-active {
-    .pop-slider__item {
-        width: 325px;
-    }
-}
