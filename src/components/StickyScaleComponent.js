@@ -1,184 +1,146 @@
 import React from 'react';
+import {scrollingAspectRatioModule, $elAll, getElementOuterHeight} from'../module/commonModule'; 
+import { relative } from 'path';
+let allSectionElementHeight = 0, totalCountOfPagination, everySectionOffsetTop=[], allPaginationHeight, counterAdding, everyPaginationActiveClassState=[], paginationPixelPropotionate;
 
-import {scrollingAspectRatioModule} from'../module/commonModule'; 
-
-export class StickyScaleComponent extends React.Component {
+export default class StickyScaleComponent extends React.Component {
     constructor(props){
-        super(props);
-        this.scrollFunction = this.scrollFunction.bind(this);
-        this.animateOnScr = this.animateOnScr.bind(this);
+        super();
+        this.getAllElementHeightOffset = this.getAllElementHeightOffset.bind(this);
+        this.componentDidMount = this.componentDidMount.bind(this);
+        this.createPaginationList = this.createPaginationList.bind(this);
+        this.onScrolling = this.onScrolling.bind(this);
+       
         this.state = {
-            currentPosition: 0,
-            allSectionsElements: undefined,
-            allOffsetSectionElements: undefined,
-            allPaginationState:undefined,
-            activebool: undefined,
-            bindAllSectionH: undefined,
-            allSectionH: 0,  
-            allPaginationH: 0,  
-            activeNumsPosForAll: 0,
-            activenumspos: 0,
-            counter: 0 
+            allPaginationVisibility: false,
+            totalCountOfPagination: 0,
+            allSectionElementHeight: 0,
+            counterAdding:0,
+            everyPaginationActiveClassState: [],
+            everySectionOffsetTop: [],
+            paginationPixelPropotionate
+            
         }
     }
     componentDidMount(){
-        this.scrollFunction();
-        const allsections = Array.from(document.querySelectorAll('.js-scale-sticky'));
-        this.setState( (prevState) => (prevState.allSectionsElements = allsections) );
-        let bindOffset = [], bindActive = [], bindActiveBool = [], bindAllSectionH = [], allSectionH = 0;
-        let self = this;
-        setTimeout(()=> {
-            let allPaginationH = document.querySelector('.sticky__scale').cleintHeight;
-            allsections.map( (element, ind) => {
-                bindOffset.push(element.offsetTop);
-                bindAllSectionH.push(element.clientHeight);
-                 allSectionH += (element.clientHeight);
-                if(ind==0){
-                    bindActive[ind] = 'active';
-                    bindActiveBool[ind] = true
+        const that = this;
+       
+        setTimeout(()=>{
+            // allPaginationHeight = getElementOuterHeight('.sticky__scale--item') * totalCountOfPagination;
+            that.getAllElementHeightOffset();
+            this.createPaginationList();
+            this.onScrolling();
+            // localStorage.setItem('paginatinHeight', getElementOuterHeight('.sticky__scale--item'));
+        }, 1500)
+    }
 
-                }
-                else {
-                    bindActive[ind] = 'inactive';
-                    bindActiveBool[ind] = false
-                }
+    getAllElementHeightOffset(){
+        let arrayOfEverySectionElements = Array.from ($elAll('.js-scale-sticky'));
+        
+            totalCountOfPagination = arrayOfEverySectionElements.length;
+        
+            arrayOfEverySectionElements.forEach((opt, ind)=> {
+               if(opt){
+                   allSectionElementHeight = allSectionElementHeight+opt.clientHeight;
+                   everySectionOffsetTop.push(opt.offsetTop);
+               }
             })
 
-            self.setState( () =>{ 
-                return {
-                    allOffsetSectionElements : bindOffset,
-                    allPaginationState : bindActive,
-                    activebool : bindActiveBool,
-                    bindAllSectionH,
-                    allPaginationH,
-                    allSectionH
-                }
-            }
-            );
-             this.animateOnScr();
-        }, 500)
-    }
-   
-    scrollFunction(){
-        const that = this;
-        window.addEventListener('scroll', this.animateOnScr, false)
-        
-    }
-    animateOnScr(){
-            const that = this;  
-            let bindAllSectionH, cpos = window.scrollY, actPos = that.state.allOffsetSectionElements, count, crntPos, allPaginationH = document.querySelector('.sticky__scale').clientHeight, allPaginationHPos = 0, allSectionH = this.state.allSectionH;
+             
 
-            if(actPos){
-                bindAllSectionH = this.state.bindAllSectionH;
-                allPaginationHPos = this.state.allSectionH;
-                crntPos =  actPos.filter( (position) => position > cpos )
-                count = actPos.length - crntPos.length;
-                
-                {
-                    let nwcount = (count - 1);
-                    let nwactive = [];
-                    let nwactivebool = [];
-                    that.state.allPaginationState.forEach( (ele, ind)=> {
-                            if(ind === nwcount){
-                                  // counter+=count;
-                                 nwactive.push('active');
-                                 nwactivebool.push(true);
-                            }
-                            else{
-                                nwactive.push('inactive');
-                                nwactivebool.push(false);
-                            }
-                    })
-                    
-                    that.setState( (prevState) => {
-                        return {
-                            allPaginationHPos,
-                            allPaginationState : nwactive,
-                            activebool : nwactivebool,
-                            allPaginationH: allPaginationH,
-                            counter: count 
-                        }
-                    })
+            this.setState(() => {
+               return {
+                   allSectionElementHeight,
+                   totalCountOfPagination,
+                   everySectionOffsetTop,
+                   allPaginationHeight
+               } 
+            });
 
-
-                    let cPosH = cpos,  allSectionH = this.state.allSectionH,
-                        
-                        scrElemH =  (actPos[count] - actPos[nwcount]),
-                        
-                        singlePercent = (scrElemH/100),
-                        
-                        
-                        singleSecPercent = (allSectionH/100),
-
-                        scrSecDiff = (allSectionH - cPosH),
-
-                        scrDiffPercent =  allPaginationHPos /singlePercent,
-                        
-                        scrSecDiffPercent = scrSecDiff /singleSecPercent,
-                        
-                        posTop = (15 * (scrDiffPercent / 100)) - 9,
-                        allPaginationHPos = (allPaginationH * (scrSecDiffPercent / 100));
-
-
-
-
-
-                        if(allPaginationHPos < 0 ){
-                            allPaginationHPos = 0;
-                        }
-                        if( allPaginationHPos > (allPaginationH - 15) ){
-                             allPaginationHPos = (allPaginationH - 15);
-                        }
-                        that.setState( () => {
-                            return {
-                                activenumspos : posTop,
-                                allPaginationH: allPaginationH,
-                                allPaginationHPos: allPaginationHPos
-                            }  
-                        })
-
-                }
-            }
-            that.setState((prevState) => (prevState.currentPosition = cpos));
-        } 
-    
-       
-        render(){
-            let style = {
-                bottom: this.state.allPaginationHPos
-            }
-            return (
-                <div className="sticky__scale">
-                    <div className="enum-pos" style={style}><span className="enum-data" >{this.state.counter < 10 ? '0'+this.state.counter : this.state.counter }</span></div>
-                    <ul className="list-unstyle">
-                        {
-                            this.state.allOffsetSectionElements ? (
-                                this.state.allOffsetSectionElements.map( (opt, ind) => {
-                                    return (
-                                          <li className={'sticky__scale--item ' + this.state.allPaginationState[ind]}  key={'opt'+(ind+1)} id={'id'+ind} data-offset={opt}>
-                                                <NumberComponent key={ind} numClass={this.state.allPaginationState[ind]} relPos={this.state.activenumspos} ind={ind} boolData={this.state.activebool[ind]}/>
-                                            </li>
-                                        )
-                                })
-                            ) : ''
-                        }
-                    </ul>
-                </div>
-            )
+            console.log(allSectionElementHeight, totalCountOfPagination, everySectionOffsetTop, allPaginationHeight)
         }
-           
-}
-const NumberComponent = (props) => {
-    // console.log(props);
-    let ind = props.ind,
-    upOneInd = ind + 1,
-    upOneIndNw = upOneInd < 10 ? '0'+upOneInd : upOneInd,
-    style = {
-        top: (props.boolData && (!isNaN(props.relPos)) ) && props.relPos
-      };
-    return (
-           <span className="num"  style= {style}>{upOneIndNw}</span>
+
+      onScrolling(){
+        window.addEventListener('scroll', this.createPaginationList, false);
+      }
+
+      createPaginationList(){
+          
+            if(allSectionElementHeight > 0 ){
+                allPaginationHeight = 18 * totalCountOfPagination;
+            
+              let scrollingDiff = (allSectionElementHeight - window.scrollY);
+
+              paginationPixelPropotionate = scrollingAspectRatioModule(allPaginationHeight, scrollingDiff, allSectionElementHeight );
+             
+       
+              
+               let currentPosition =  everySectionOffsetTop.filter( (position) => {
+                   return (position <= (window.scrollY - getElementOuterHeight('footer') ) );
+                } );
+
+                counterAdding = currentPosition.length +1;
+                
+                everyPaginationActiveClassState = new Array();
+               
+                for(var i=0; i<totalCountOfPagination; i++){
+                    if((counterAdding -1) === i){
+                        everyPaginationActiveClassState.push(true)
+                    }
+                    else {
+                        everyPaginationActiveClassState.push(false)
+                    }
+                }
+
+                this.setState( () => {
+                 return {
+                     everyPaginationActiveClassState,
+                     counterAdding,
+                     paginationPixelPropotionate: paginationPixelPropotionate
+                    }
+                 })
+            }
+      }   
+
+    render(){
+        let tpaginationPixelPropotionate = allPaginationHeight - this.state.paginationPixelPropotionate;
+            if(tpaginationPixelPropotionate >  (allPaginationHeight - 15)){
+                tpaginationPixelPropotionate = allPaginationHeight - 15;
+            }
+
+        return (
+            <div className="sticky__scale"> 
+                <div className="enum-pos">
+                    <span className="enum-data" style={{marginTop: tpaginationPixelPropotionate, position: 'absolute'}}>
+                         {this.state.counterAdding < 10 ? '0'+this.state.counterAdding : this.state.counterAdding }
+                    </span>
+                </div>
+                <ul className="list-unstyle">
+                    {this.state.everySectionOffsetTop.length > 0  ? this.state.everySectionOffsetTop.map( (opt, ind)=>{
+
+                        return (
+                        <NumberComponent 
+                            key={'kk_'+ind}
+                            counterAdding={this.state.counterAdding}
+                            activeDeactiveClass={ this.state.everyPaginationActiveClassState[ind] ? 'sticky__scale--item active' : 'sticky__scale--item '}
+                            />
+                   ) 
+                    }): ''
+                    
+                }
+                   
+                </ul>
+            </div>
         )
     }
+       
+}
 
-export default StickyScaleComponent;
+const NumberComponent = (props) => {
+
+        return (
+            <li className={props.activeDeactiveClass}>
+                <span className="num">{props.counterAdding}</span>
+            </li>    
+        );
+    }

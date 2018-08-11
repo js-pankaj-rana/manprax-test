@@ -1,9 +1,13 @@
+const bindHieght = [], bindHalfHeight = [];
+let allsections, parentElH;
+
 import {menuComponentJson} from '../module/menuComponentJson';
+
 
 import {scrollingAspectRatioModule, getElementOuterHeight, $elAll, getElementOffsetTop} from '../module/commonModule';
 
 
-console.log(scrollingAspectRatioModule(20,2225,4500));
+
 
 export default class MenuComponent extends React.Component {
 
@@ -23,18 +27,12 @@ export default class MenuComponent extends React.Component {
         }
     }
     componentDidMount() {
-        this.scrollFunction();
-
-        const allsections = Array.from($elAll('.js-parallex')),
-            bindHieght = [], bindHalfHeight = [];
-            const self = this;
-            let parentElH = undefined, offsetelement = 0;
-            
+        const self = this;
+        allsections = Array.from($elAll('.js-parallex'));
+       
             setTimeout(()=> {
-                parentElH  = getElementOuterHeight('.js-scale-sticky.ourmenu');
-                offsetelement = getElementOffsetTop('.js-scale-sticky.ourmenu');
-                // alert(offsetelement)
-                 allsections.map( (element, ind) => {
+                this.scrollFunction();
+                allsections.map( (element, ind) => {
                     bindHieght.push(element.clientHeight);
                     bindHalfHeight.push(element.clientHeight/2);
                 })
@@ -42,9 +40,7 @@ export default class MenuComponent extends React.Component {
                         return {
                             bindHieght,
                             bindHalfHeight,
-                            //parentelmentH : parentElH,
                             activenumspos : parentElH,
-                            offsetelement : offsetelement,
                         }
                     });
                  this.scrollingFunction();

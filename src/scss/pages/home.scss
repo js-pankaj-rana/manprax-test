@@ -81,7 +81,7 @@
                 height: 2px;
                 background-color: $black;
                 z-index: 2;
-                top: 4px;
+                top: 7px;
                 transition: all 0.45s ease-in;
                 left: -3px;
             }
@@ -107,8 +107,8 @@
             }
         }
         .enum-pos {
-            position: absolute;
-            left: 0px;
+            position: relative;
+            left: 1px;
         }
     }
 }

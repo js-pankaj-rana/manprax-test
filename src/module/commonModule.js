@@ -12,12 +12,18 @@
 */
 
 export const scrollingAspectRatioModule = (heightOfElementExpected, scrollingHightPosoition, heightOfPorpationalElement) => {
-    const elementSinglePercentValue = (heightOfPorpationalElement/100);
-    let heightOfPorpationalElementInPixelActual, scrollingHightPosoitionWithWindowHeight =  heightOfPorpationalElement - scrollingHightPosoition,
-        heightOfPorpationalElementInPixel = scrollingHightPosoitionWithWindowHeight/elementSinglePercentValue;
-        
-        return heightOfPorpationalElementInPixelActual = heightOfElementExpected/heightOfPorpationalElementInPixel;
 
+    if(heightOfPorpationalElement > scrollingHightPosoition)
+    { 
+         const elementSinglePercentValue = (heightOfPorpationalElement/100);
+
+        let heightOfPorpationalElementInPixelActual, scrollingHightPosoitionWithWindowHeight =  heightOfPorpationalElement - scrollingHightPosoition,
+            heightOfPorpationalElementInPixel = scrollingHightPosoition/elementSinglePercentValue;
+
+                heightOfPorpationalElementInPixelActual = heightOfElementExpected*(heightOfPorpationalElementInPixel/100);
+                
+                return heightOfPorpationalElementInPixelActual;
+    }
 }
 
 /*

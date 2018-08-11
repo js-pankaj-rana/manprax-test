@@ -92,9 +92,9 @@ export default class PopRecipesComponent extends React.Component {
         ];
         this.state = {
             sliders : sliders,
+            coutner: 0
         }
     }
-
     render(){
         const settings = {
             className: "slider variable-width",
@@ -102,9 +102,9 @@ export default class PopRecipesComponent extends React.Component {
             swipe: false,
             infinite: false,
             slidesToShow: 1,
-            slidesToScroll: 2,
+            slidesToScroll: 1,
             variableWidth: true,
-            nextArrow: <SampleNextArrow />,
+            nextArrow: <SampleNextArrow  />,
             prevArrow: <SamplePrevArrow />
           };
 
@@ -173,7 +173,7 @@ const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
       <div
-        className={'slide-next'}
+        className={props.className}
         style={{  display: "block", width:"49px", height:"21px", background: "url('/images/assets/next.png')" }}
         onClick={onClick}
       />
@@ -183,7 +183,7 @@ const SampleNextArrow = (props) => {
     const { className, style, onClick } = props;
     return (
       <div
-        className={'slide-prev'}
+        className={props.className}
         style={{  display: "block", width:"49px", height:"21px", background: "url('/images/assets/back.png')" }}
         onClick={onClick}
       >
